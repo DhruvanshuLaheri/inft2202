@@ -27,7 +27,7 @@ function AnimalService() {
     if (!localStorage.getItem('animals')) {
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage  
         // create a new entry in local storage and put an empty array in it        
-        localStorage.setItem('animals', JSON.stringify(initAnimals()))
+        localStorage.setItem('animals', JSON.stringify([]))
     }    
 }
 /*
@@ -37,11 +37,21 @@ AnimalService.prototype.getAnimals = function() {
     // this will always be set, because we did it in the constructor
     return JSON.parse(localStorage.getItem('animals'));
 }
-AnimalService.prototype.getAnimalPage = function(pagination) {
+AnimalService.prototype.getAnimalPage = function({page = 1, perPage = 15}) {
     // this will always be set, because we did it in the constructor
+    let records = JSON.parse(localStorage.getItem('animals'));
+    let pagination = {
+        page: page,
+        perPage: perPage,
+        pages: Math.ceil(records.length/perPage)
+    }
+    if(pagination.page < 1) pagination.page = 1;
+    if(pagination.page > pagination.pages) pagination.page=pagination.pages;
+    let start = (pagination.page-1)*perPage;
+    let end = start + perPage
     return {
-        pagination,
-        records: JSON.parse(localStorage.getItem('animals').slice(pagination.pageNumber*pagination.pageSize,pagination.pageSize))
+        records: records.slice(start, end),
+        pagination
     };
 }
 /*
@@ -91,4 +101,4 @@ AnimalService.prototype.deleteAnimal = function(animal) {
     return true;
 }
 
-const animalService = new AnimalService();
+export default new AnimalService();
