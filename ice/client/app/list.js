@@ -1,10 +1,3 @@
-/*
-
-Name: Dhruvanshu Laheri
-File: list.js
-Date: Jan-15, 2025
-Description: THis is about list json file.
-*/
 import animalService from "./animal.service.mock.js";
 
 console.log('we are on the list page');

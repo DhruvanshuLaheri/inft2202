@@ -1,10 +1,3 @@
-/*
-
-Name: Dhruvanshu Laheri
-File: create.js
-Date: Jan-15, 2025
-Description: THis is about create json file.
-*/
 // tell us what page we're on
 console.log('we are on the add page');
 

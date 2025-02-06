@@ -1,11 +1,4 @@
 /*
-
-Name: Dhruvanshu Laheri
-File: animal.service.mock.js
-Date: Jan-15, 2025
-Description: THis is about animal.service.mock json file.
-*/
-/*
  *  Service constructor
  */
 function AnimalService() {
